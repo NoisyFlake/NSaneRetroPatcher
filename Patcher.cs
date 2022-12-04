@@ -1,4 +1,5 @@
 using Microsoft.Win32;
+using System;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 
@@ -73,7 +74,6 @@ static class Patcher
         quickbms.StartInfo.UseShellExecute = false;
         quickbms.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
         quickbms.StartInfo.RedirectStandardOutput = true;
-        quickbms.StartInfo.RedirectStandardError = true;
 
         string? pre = null;
         #if DEBUG
@@ -89,15 +89,10 @@ static class Patcher
 
         File.AppendAllText("log.txt", "Command: " + quickbms.StartInfo.FileName + " " + quickbms.StartInfo.Arguments + Environment.NewLine);
 
+        quickbms.OutputDataReceived += (s, e) => File.AppendAllText("log.txt", e.Data + Environment.NewLine);
+
         quickbms.Start();
+        quickbms.BeginOutputReadLine();
         await quickbms.WaitForExitAsync();
-
-        // For whatever stupid reason, quickbms outputs its progress to stderr. An error is always displayed on the first line though, so only write it if one exists.
-        string stderr = quickbms.StandardError.ReadToEnd();
-        string firstErrorLine = stderr.Substring(0, stderr.IndexOf(Environment.NewLine));
-        if (firstErrorLine.Contains("Error") || firstErrorLine.Contains("error")) File.AppendAllText("log.txt", firstErrorLine + Environment.NewLine);
-
-        string stdout = quickbms.StandardOutput.ReadToEnd();
-        File.AppendAllText("log.txt", stdout + Environment.NewLine);
     }
 }
