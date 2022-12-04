@@ -125,6 +125,8 @@ For the best quality possible, this patcher uses the pre-console mixes by Josh M
 
 ## How it works
 
+Note: This is only interesting for you if you intend to add new music files for the patcher. If you only want to patch your game, you can stop reading here and just download the patcher.
+
 ### Patching the game files
 
 Every level consists of a .pak file found in the archives folder of the game. These files can be extracted, edited and re-packed using `quickbms` in combination with an older script for Marvel Ultimate Alliance 2, both can be found inside the [vendor folder](/vendor). 
