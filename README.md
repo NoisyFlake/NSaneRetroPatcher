@@ -1,5 +1,7 @@
 # N. Sane Retro Patcher
 
+<img src="resources/screenshot.png" width="400">
+
 This is a Windows application that patches the individual level files of _Crash Bandicoot - The N. Sane Trilogy_ to replace the soundtrack with the original PlayStation 1 soundtrack, using the pre-console mixes of Josh Mancell.
 
 The user has the choice of patching only the available pre-console mixes, or to also patch the remaining tracks that are not yet released as a pre-console mix by using the compressed PS1 versions. Patching a level usually takes about 10-20 seconds (and twice as long if the additional PS1 versions are patched). Patching all 106 levels of the game might therefore take about 30 minutes, so please be patient.
