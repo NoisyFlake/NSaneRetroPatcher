@@ -85,7 +85,7 @@ namespace NSaneRetroPatcher {
                 new Level("Rock It", "L222_RockIt", false),
                 new Level("Night Fight", "L223_NightFight", true),
                 new Level("Pack Attack", "L224_PackAttack", false),
-                new Level("Spaced Out", "L225_SpacedOut", true),
+                new Level("Spaced Out", "L225_SpacedOut", false),
                 new Level("Dr. N. Cortex", "B205_DrNeoCortex", false),
                 new Level("Totally Bear", "L226_TotallyBear", false),
                 new Level("Totally Fly", "L227_TotallyFly", true),
