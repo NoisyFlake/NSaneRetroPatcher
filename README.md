@@ -4,13 +4,13 @@
 
 This is a Windows application that patches the individual level files of _Crash Bandicoot - The N. Sane Trilogy_ to replace the soundtrack with the original PlayStation 1 soundtrack, using the pre-console mixes of Josh Mancell.
 
-The user has the choice of patching only the available pre-console mixes, or to also patch the remaining tracks that are not yet released as a pre-console mix by using the compressed PS1 versions. Patching a level usually takes about 10-20 seconds (and twice as long if the additional PS1 versions are patched). Patching all 106 levels of the game might therefore take about 30 minutes, so please be patient.
+Because not every track is available as a pre-console version yet, the compressed PS1 version will be used for those few tracks. When new pre-console versions are released, they will be added.
 
 ## Download & Build
 
 You can download the latest version from the [Releases page](https://github.com/NoisyFlake/NSaneRetroPatcher/releases/latest).
 
-You can build the project with Visual Studio 2022, using .NET Framework 6.0.
+You can build the project with Visual Studio 2022, using .NET Framework 7.0. You'll also need [igArchiveLib](https://github.com/LG-RZ/igArchiveLib) as a dependency of the project.
 
 ## Pre-console availability
 
@@ -22,7 +22,7 @@ For the best quality possible, this patcher uses the pre-console mixes by Josh M
 | Level | Track | Pre-Console mix |
 | ---------- | ----- | --------------- |
 | N. Sanity Beach, Wumpa Islands | Main Theme | :heavy_check_mark: | 
-|                 | Part 2 (Jungle) | :x: | 
+|                                | Part 2 (Jungle) | :x: | 
 | Jungle Rollers, Rolling Stones | Main Theme | :x: | 
 | The Great Gate, Native Fortress | Main Theme | :heavy_check_mark: | 
 | Boulders, Boulder Dash | Main Theme | :heavy_check_mark: | 
@@ -131,9 +131,13 @@ Note: This is only interesting for you if you intend to add new music files for 
 
 ### Patching the game files
 
-Every level consists of a .pak file found in the archives folder of the game. These files can be extracted, edited and re-packed using `quickbms` in combination with an older script for Marvel Ultimate Alliance 2, both can be found inside the [vendor folder](/vendor). 
+Every level consists of a .pak file found in the archives folder of the game. 
 
 All music files can be found inside a PAK archive under the following path: `temporary\mack\data\win64\output\sound_streams\wavs\Music`. The only exception here is the Crash Bandicoot 2 Warp Room music, which can instead be found under `temporary\mack\data\win64\output\sound_samples\wavs\Music`.
+
+In the old version of the patcher, the music files of every level were replaced individually. However, this took about 30 minutes to patch all levels. 
+
+The new version uses igArchiveLib to create a single file called `update.pak`. The game engine usually uses it for content updates from the developer by overwriting files globally in all other pak files during runtime. However, since this game never received an update in such a format (and never will), we can use this file for modding purposes. All audio files are therefore written to the update.pak, and then the game uses it to simply overwrite the regular soundtrack files during runtime.
 
 ### Audio files
 
@@ -156,10 +160,22 @@ As most of you know, the music from Rock It / Pack attack acts differently. Inst
 
 ![image](/resources/RockIt_Pt1_HeaderExplanation.png)
 
+### Volume
+
+For unknown reasons, the N. Sane soundtrack is way louder than regular audio files, resulting in pretty quiet music when replacing the soundtrack. To fix this, the soundbanks found in the archives under `sounds/banks/Music/` have been hex edited to set the playback volume from 1.0 to 2.0. This allows for a playthrough with regular audiofiles at 0 dB, without having to reduce the SFX/speech volume ingame.
+
+Editing was done using the Alchemist modding suite.
+
 # Credits
 
 [Josh Mancell](https://soundcloud.com/joshmancell) - The original soundtrack
 
-[Luigi Auriemma](http://aluigi.altervista.org/quickbms.htm) - QuickBMS
+[LG-RZ](https://github.com/LG-RZ/) - igArchiveLib Developer
+
+[AdventureT](https://github.com/AdventureT/) - igArchiveLib, Header field names
+
+[DTZxPorter](https://github.com/DTZxPorter/) - igArchiveLib, Reverse Engineered the way to calculate hash search properties and block table calculation
+
+[ARD](https://thewarproom.com/showthread.php?tid=97) - Alchemist Modding Suite
 
 [Louie Mantia, Jr.](http://louie.world/icons/) - Icon
