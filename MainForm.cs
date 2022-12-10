@@ -3,15 +3,11 @@
 namespace NSaneRetroPatcher;
 
 public partial class MainForm : Form {
-    private readonly LevelSelectForm levelSelect;
 
     public MainForm() {
         InitializeComponent();
 
         ActiveControl = pictureBox1;
-
-        levelSelect = new LevelSelectForm();
-        UpdateLevelSelectButtonText();
 
         string? installFolder = Patcher.FindNSaneTrilogy();
         if (installFolder != null) {
@@ -34,11 +30,11 @@ public partial class MainForm : Form {
         if (Directory.Exists(directory.Text + "\\archives")) {
             directoryStatus.Text = "✔ This is a valid N. Sane Trilogy directory";
             directoryStatus.ForeColor = SystemColors.ControlText;
-            UpdateStartPatchingButtonStatus();
+            startPatching.Enabled = true;
         } else {
             directoryStatus.Text = "✖ This is not a valid N. Sane Trilogy directory";
             directoryStatus.ForeColor = Color.Red;
-            UpdateStartPatchingButtonStatus();
+            startPatching.Enabled = false;
         }
     }
 
@@ -48,21 +44,13 @@ public partial class MainForm : Form {
         ProgressLabel.Visible = true;
 
         string dir = directory.Text + "\\archives";
-        bool patchPSX = versionPsx.Checked;
-
-        List<Level> levels = Level.AllLevels();
-        List<string> levelNamesToPatch = levelSelect.GetSelectedLevelNames();
-        levels.RemoveAll(level => !levelNamesToPatch.Contains(level.PakName));
-
-        Patcher.Patch(dir, levels, patchPSX, this);
+        Patcher.Patch(dir, this);
     }
 
     private void ToggleElements(bool enabled) {
         directory.Enabled = enabled;
         directorySelect.Enabled = enabled;
         directoryStatus.Enabled = enabled;
-        versionPsx.Enabled = enabled;
-        versionNsane.Enabled = enabled;
         startPatching.Enabled = enabled;
 
         Progress.Visible = !enabled;
@@ -77,23 +65,5 @@ public partial class MainForm : Form {
             ToggleElements(true);
             ProgressLabel.ForeColor = Color.Green;
         }
-    }
-
-    private void UpdateStartPatchingButtonStatus() {
-        startPatching.Enabled = (Directory.Exists(directory.Text + "\\archives")) && levelSelect.GetSelectedLevelNames().Count > 0;
-    }
-
-    private void UpdateLevelSelectButtonText() {
-        int count = levelSelect.GetSelectedLevelNames().Count;
-
-        levelSelectButton.Text = "Select Levels to Patch\n(" + count + " selected)";
-        levelSelectButton.ForeColor = count > 0 ? SystemColors.ControlText : Color.Red;
-    }
-
-    private void LevelSelection_Click(object sender, EventArgs e) {
-        levelSelect.ShowDialog();
-
-        UpdateLevelSelectButtonText();
-        UpdateStartPatchingButtonStatus();
     }
 }

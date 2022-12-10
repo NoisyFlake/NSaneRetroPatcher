@@ -1,6 +1,9 @@
+using igArchiveLib;
 using Microsoft.Win32;
 using System;
 using System.Diagnostics;
+using System.IO.Compression;
+using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 
 namespace NSaneRetroPatcher;
@@ -47,52 +50,24 @@ static class Patcher
         return null;
     }
 
-    async public static void Patch(string Path, List<Level> levels, Boolean PatchPSX, MainForm form) {
-        File.WriteAllText("log.txt", String.Empty);
-
-        for (int index = 0; index < levels.Count; index++) {
-            Level level = levels[index];
-            string progressText = "Patching Level " + (index + 1) + " / " + levels.Count + ": " + level.Name;
-            double percentage = index / (double)levels.Count * 100;
-            int percentageInt = (int)Math.Ceiling(percentage);
-
-            form.SetProgress(percentageInt, progressText);
-
-            if (level.NeedsPSX && PatchPSX) {
-                await PatchLevel(Path + "\\" + level.PakName + ".pak", true);
-            }
-
-            await PatchLevel(Path + "\\" + level.PakName + ".pak", false);
-        }
-
-        form.SetProgress(100, "Patching done, enjoy. You can now close the application.");
-    }
-
-    async private static Task PatchLevel(string LevelPath, bool PSX) {
-        Process quickbms = new Process();
-        quickbms.StartInfo.CreateNoWindow = true;
-        quickbms.StartInfo.UseShellExecute = false;
-        quickbms.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-        quickbms.StartInfo.RedirectStandardOutput = true;
-
+    public async static void Patch(string archivesPath, MainForm form) {
         string? pre = null;
         #if DEBUG
                 pre = "..\\..\\..\\";
         #endif
 
-        string tool = pre + "vendor\\quickbms.exe";
-        string script = pre + "vendor\\nsanetrilogy.bms";
-        string music = pre + "music" + "\\" + (PSX ? "psx" : "preconsole");
+        string music = pre + "music";
+        string pakPath = archivesPath + "\\update.pak";
 
-        quickbms.StartInfo.FileName = tool;
-        quickbms.StartInfo.Arguments = "-w -r -r " + script + " \"" + LevelPath + "\" " + music;
+        form.SetProgress(0, "Patching: " + 0 + "% done");
 
-        File.AppendAllText("log.txt", "Command: " + quickbms.StartInfo.FileName + " " + quickbms.StartInfo.Arguments + Environment.NewLine);
+        igArchive archive = new igArchive();
+        archive.createFromDirectory(pakPath, Path.GetFullPath(music), (igArchive.CompressionType)0, PercentageReport: (percentage) => {
+            int percent = (int)(percentage * 100f);
+            form.SetProgress(percent, "Patching: " + percent + "% done");
+        });
+        archive.close();
 
-        quickbms.OutputDataReceived += (s, e) => File.AppendAllText("log.txt", e.Data + Environment.NewLine);
-
-        quickbms.Start();
-        quickbms.BeginOutputReadLine();
-        await quickbms.WaitForExitAsync();
+        form.SetProgress(100, "Patching done, enjoy. You can now close the application.");
     }
 }

@@ -36,8 +36,6 @@ partial class MainForm
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.versionNsane = new System.Windows.Forms.RadioButton();
-            this.versionPsx = new System.Windows.Forms.RadioButton();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.startPatching = new System.Windows.Forms.Button();
@@ -45,7 +43,6 @@ partial class MainForm
             this.directoryStatus = new System.Windows.Forms.Label();
             this.Progress = new System.Windows.Forms.ProgressBar();
             this.ProgressLabel = new System.Windows.Forms.Label();
-            this.levelSelectButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -63,7 +60,7 @@ partial class MainForm
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(312, 144);
+            this.label1.Location = new System.Drawing.Point(312, 163);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(119, 21);
             this.label1.TabIndex = 2;
@@ -72,7 +69,7 @@ partial class MainForm
             // directory
             // 
             this.directory.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.directory.Location = new System.Drawing.Point(317, 196);
+            this.directory.Location = new System.Drawing.Point(317, 215);
             this.directory.Name = "directory";
             this.directory.Size = new System.Drawing.Size(401, 29);
             this.directory.TabIndex = 3;
@@ -81,7 +78,7 @@ partial class MainForm
             // directorySelect
             // 
             this.directorySelect.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.directorySelect.Location = new System.Drawing.Point(722, 196);
+            this.directorySelect.Location = new System.Drawing.Point(722, 215);
             this.directorySelect.Name = "directorySelect";
             this.directorySelect.Size = new System.Drawing.Size(53, 29);
             this.directorySelect.TabIndex = 4;
@@ -115,43 +112,19 @@ partial class MainForm
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(314, 287);
+            this.label4.Location = new System.Drawing.Point(314, 327);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(453, 63);
+            this.label4.Size = new System.Drawing.Size(456, 63);
             this.label4.TabIndex = 7;
-            this.label4.Text = "Because not every track is available as a pre-console version yet,\r\nyou have the " +
-    "option to either keep these tracks as the N. Sane\r\nversion, or use the compresse" +
-    "d PS1 tracks instead.";
-            // 
-            // versionNsane
-            // 
-            this.versionNsane.AutoSize = true;
-            this.versionNsane.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.versionNsane.Location = new System.Drawing.Point(317, 390);
-            this.versionNsane.Name = "versionNsane";
-            this.versionNsane.Size = new System.Drawing.Size(174, 25);
-            this.versionNsane.TabIndex = 8;
-            this.versionNsane.Text = "Keep N. Sane version";
-            this.versionNsane.UseVisualStyleBackColor = true;
-            // 
-            // versionPsx
-            // 
-            this.versionPsx.AutoSize = true;
-            this.versionPsx.Checked = true;
-            this.versionPsx.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.versionPsx.Location = new System.Drawing.Point(317, 360);
-            this.versionPsx.Name = "versionPsx";
-            this.versionPsx.Size = new System.Drawing.Size(140, 25);
-            this.versionPsx.TabIndex = 9;
-            this.versionPsx.TabStop = true;
-            this.versionPsx.Text = "Use PS1 version";
-            this.versionPsx.UseVisualStyleBackColor = true;
+            this.label4.Text = "Because not every track is available as a pre-console version yet,\r\nthe compresse" +
+    "d PS1 version will be used for those few tracks. \r\nWhen new pre-console versions" +
+    " are released, they will be added.";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label5.Location = new System.Drawing.Point(314, 266);
+            this.label5.Location = new System.Drawing.Point(314, 306);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(140, 21);
             this.label5.TabIndex = 10;
@@ -161,7 +134,7 @@ partial class MainForm
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label6.Location = new System.Drawing.Point(312, 165);
+            this.label6.Location = new System.Drawing.Point(312, 184);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(378, 21);
             this.label6.TabIndex = 11;
@@ -171,11 +144,11 @@ partial class MainForm
             // 
             this.startPatching.Enabled = false;
             this.startPatching.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.startPatching.Location = new System.Drawing.Point(556, 455);
+            this.startPatching.Location = new System.Drawing.Point(317, 455);
             this.startPatching.Name = "startPatching";
-            this.startPatching.Size = new System.Drawing.Size(219, 46);
+            this.startPatching.Size = new System.Drawing.Size(458, 46);
             this.startPatching.TabIndex = 12;
-            this.startPatching.Text = "Start Patching";
+            this.startPatching.Text = "Patch Game";
             this.startPatching.UseVisualStyleBackColor = true;
             this.startPatching.Click += new System.EventHandler(this.StartPatching_Click);
             // 
@@ -187,23 +160,23 @@ partial class MainForm
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(215, 15);
             this.label7.TabIndex = 13;
-            this.label7.Text = "Version 2.0.0 - Developed by NoisyFlake";
+            this.label7.Text = "Version 2.1.0 - Developed by NoisyFlake";
             this.label7.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // directoryStatus
             // 
             this.directoryStatus.AutoSize = true;
             this.directoryStatus.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.directoryStatus.Location = new System.Drawing.Point(313, 230);
+            this.directoryStatus.Location = new System.Drawing.Point(313, 249);
             this.directoryStatus.Name = "directoryStatus";
             this.directoryStatus.Size = new System.Drawing.Size(0, 15);
             this.directoryStatus.TabIndex = 14;
             // 
             // Progress
             // 
-            this.Progress.Location = new System.Drawing.Point(316, 455);
+            this.Progress.Location = new System.Drawing.Point(317, 455);
             this.Progress.Name = "Progress";
-            this.Progress.Size = new System.Drawing.Size(459, 46);
+            this.Progress.Size = new System.Drawing.Size(458, 46);
             this.Progress.TabIndex = 15;
             this.Progress.Visible = false;
             // 
@@ -218,32 +191,18 @@ partial class MainForm
             this.ProgressLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.ProgressLabel.Visible = false;
             // 
-            // levelSelectButton
-            // 
-            this.levelSelectButton.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.levelSelectButton.Location = new System.Drawing.Point(316, 455);
-            this.levelSelectButton.Name = "levelSelectButton";
-            this.levelSelectButton.Size = new System.Drawing.Size(217, 46);
-            this.levelSelectButton.TabIndex = 17;
-            this.levelSelectButton.Text = "Select Levels to Patch\r\n(? selected)";
-            this.levelSelectButton.UseVisualStyleBackColor = true;
-            this.levelSelectButton.Click += new System.EventHandler(this.LevelSelection_Click);
-            // 
-            // Form1
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(805, 529);
             this.Controls.Add(this.Progress);
-            this.Controls.Add(this.levelSelectButton);
             this.Controls.Add(this.ProgressLabel);
             this.Controls.Add(this.directoryStatus);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.startPatching);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.versionPsx);
-            this.Controls.Add(this.versionNsane);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -254,7 +213,7 @@ partial class MainForm
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "N. Sane Retro Patcher";
             this.TransparencyKey = System.Drawing.Color.Fuchsia;
@@ -272,8 +231,6 @@ partial class MainForm
     private Label label2;
     private Label label3;
     private Label label4;
-    private RadioButton versionNsane;
-    private RadioButton versionPsx;
     private Label label5;
     private Label label6;
     private Button startPatching;
@@ -281,5 +238,4 @@ partial class MainForm
     private Label directoryStatus;
     private ProgressBar Progress;
     private Label ProgressLabel;
-    private Button levelSelectButton;
 }
