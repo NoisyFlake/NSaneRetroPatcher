@@ -148,7 +148,7 @@ The steps to create a working .snd file that loops correctly in the game are:
 1. Create an audio file that loops correctly and save it in a format that _doesn't_ add silence at the beginning (so no MP3). Lossless is recommended, but e.g. OGG Vorbis is also fine, since the file will be converted to MP3 soon anyways. Make sure that the sample rate is 48000Hz. Name the file like the first part of the original .snd file (e.g. `CB2_L202.ogg`).
 2. Import the file into the FMOD Soundbank Generator, set the format to a 128kbit/s MP3 and disable the "enable looping" property, since the game doesn't seem to care about it anyway. Make sure that you're using an older version of the Soundbank Generator (1.08.30 or older), otherwise you won't be able to create MP3s.
 3. Rename the output file to the corresponding file from the PAK archive (e.g. `CB2_L202,CB2_Music_L202_SnowGo_bank,NoLoc,48000,40,0,1.snd`).
-4. Make sure you're using the exact same folder structure as the original archive, and then import the newly created .snd file back into the archive with the reimport feature of quickbms.
+4. ~Make sure you're using the exact same folder structure as the original archive, and then import the newly created .snd file back into the archive with the reimport feature of quickbms.~ This is no longer necessary, since we're using the update.pak method as mentioned in the previous section. Simply drop the new .snd file into the music folder and run the patcher again to create a new update.pak file.
 
 #### Exception: Crash 2 Warp Room music
 
