@@ -2,7 +2,7 @@
 
 <img src="resources/screenshot.png" width="400">
 
-This is a Windows application that patches the individual level files of _Crash Bandicoot - The N. Sane Trilogy_ to replace the soundtrack with the original PlayStation 1 soundtrack, using the pre-console mixes of Josh Mancell.
+This is a Windows application that patches _Crash Bandicoot - The N. Sane Trilogy_ to replace the soundtrack with the original PlayStation 1 soundtrack, using the pre-console mixes of Josh Mancell.
 
 Because not every track is available as a pre-console version yet, the compressed PS1 version will be used for those few tracks. When new pre-console versions are released, they will be added.
 
